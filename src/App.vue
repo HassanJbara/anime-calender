@@ -3,6 +3,6 @@ import {HelloWorld} from '@/components'
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <HelloWorld />
 </template>
 
