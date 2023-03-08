@@ -11,10 +11,12 @@ const showMenu = ref<boolean>(false);
 </script>
 
 <template>
+  <!-- First div is a trick  -->
   <div
     class="h-20 w-20 rounded items-center gap-2 shadow-default"
     style="visibility: hidden"
   />
+
   <Transition
     mode="out-in"
     enter-active-class="duration-75 ease-out transition-all"
@@ -25,7 +27,7 @@ const showMenu = ref<boolean>(false);
     <div
       v-if="!showMenu"
       @click="showMenu = true"
-      class="h-20 w-20 rounded flex flex-col items-center gap-2 shadow-default cursor-pointer fixed"
+      class="h-20 w-20 rounded flex flex-col items-center gap-2 shadow-default cursor-pointer absolute"
       :class="accentColor"
     >
       <div class="w-3/5 h-2 bg-white mt-5 rounded-md" />
@@ -33,7 +35,10 @@ const showMenu = ref<boolean>(false);
       <div class="w-3/5 h-2 bg-white rounded-md" />
     </div>
 
-    <div v-else class="flex flex-col w-80 h-96 rounded shadow-menu fixed">
+    <div
+      v-else
+      class="flex flex-col w-80 h-[400px] rounded shadow-menu absolute"
+    >
       <div class="flex flex-row rounded" :class="accentColor">
         <img
           src="/cross.svg"
@@ -55,21 +60,21 @@ const showMenu = ref<boolean>(false);
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
         <div class="flex flex-row">
-          <span class="text-burger-text font-medium text-2xl">أرشيف</span>
+          <span class="text-burger-text font-medium text-3xl">أرشيف</span>
           <img src="/archive.svg" width="35" height="35" class="float-right" />
         </div>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
         <div class="flex flex-row">
-          <span class="text-burger-text font-medium text-2xl">قادمة</span>
+          <span class="text-burger-text font-medium text-3xl">قادمة</span>
           <img src="/next.svg" width="35" height="35" class="float-right" />
         </div>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
         <div class="flex flex-row">
-          <span class="text-burger-text font-medium text-2xl">الإعدادات</span>
+          <span class="text-burger-text font-medium text-3xl">الإعدادات</span>
           <img src="/settings.svg" width="35" height="35" class="float-right" />
         </div>
       </div>

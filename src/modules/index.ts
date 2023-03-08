@@ -1,2 +1,2 @@
-export type { Anime, AnimeSearch, season } from "./animes";
-export { seasons } from "./animes";
+export type { Anime, AnimeSearch, season, format, genre } from "./animes";
+export { seasons, formats, genres } from "./animes";

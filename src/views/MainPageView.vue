@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { SiteHeader } from "@/components";
+import { SiteHeader, AnimesList } from "@/components";
 import { season } from "@/modules";
+
 import { ref } from "vue";
 
 const selectedSeason = ref<season | null>(null);
@@ -13,5 +14,7 @@ const selectedSeason = ref<season | null>(null);
       :year="2010"
       @change-season="(s) => (selectedSeason = s)"
     />
+
+    <AnimesList class="mb-10" />
   </div>
 </template>

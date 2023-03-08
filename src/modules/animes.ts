@@ -1,5 +1,5 @@
 export const seasons = ["FALL", "SUMMER", "SPRING", "WINTER"] as const;
-export const formats = ["TV", "OVA", "MOVIE", "SPECIAL"] as const;
+export const formats = ["TV", "SHORT", "ONGOING", "MOVIE", "OTHER"] as const;
 export const genres = [
   "COMEDY",
   "ACTION",
@@ -18,7 +18,7 @@ export const genres = [
   "SCI-FI",
   "SPORTS",
   "ECCHI",
-];
+] as const;
 
 export type season = (typeof seasons)[number];
 export type format = (typeof formats)[number];
@@ -32,7 +32,7 @@ export interface Anime {
   studio: string;
   format: format;
   story: string;
-  genre: genre[];
+  genres: genre[];
   cover_image: string;
   season: season;
   start_date: string;
