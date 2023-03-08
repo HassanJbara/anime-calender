@@ -1,0 +1,8 @@
+<svg id="Component_1_6" data-name="Component 1 – 6" xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39">
+  <g id="Ellipse_4" data-name="Ellipse 4" fill="none" stroke="#707070" stroke-width="2">
+    <ellipse cx="19.5" cy="19.5" rx="19.5" ry="19.5" stroke="none"/>
+    <ellipse cx="19.5" cy="19.5" rx="18.5" ry="18.5" fill="none"/>
+  </g>
+  <path id="Path_56" data-name="Path 56" d="M2351.544,1091h15.15" transform="translate(-2339.658 -1071)" fill="none" stroke="#707070" stroke-width="2"/>
+  <path id="Path_57" data-name="Path 57" d="M0,0H15.15" transform="translate(19.461 12.425) rotate(90)" fill="none" stroke="#707070" stroke-width="2"/>
+</svg>
