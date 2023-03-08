@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory, type RouteLocationNormalized,} from "vue-router";
 
-import {HelloWorld} from '@/components'
 import { useAnimeStore } from "@/stores";
 import { seasons } from "@/modules";
+import { MainPageView } from "@/views";
   
 const routes = [
-    { path: "/", component: HelloWorld },
+    { path: "/", component: MainPageView },
     {
       path: "/:year/:season",
       name: "home-detail",
-      component: HelloWorld,
+      component: MainPageView,
       beforeEnter(to: RouteLocationNormalized) {
         const animesStore = useAnimeStore();
         const seasonName = seasons.find((validName) => validName === to.params.season.toString().toUpperCase());
