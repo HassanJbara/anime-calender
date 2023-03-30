@@ -13,7 +13,9 @@ module.exports = {
         "format-text": "#011c27",
         "card-bg": "#fcfcfc",
         "card-footer": "#f2f2f2",
+        "card-cover-bg": "#3E3E40",
         "watch-text": "#8d8d8d",
+        "next-episode": "#7e7d7d",
       },
       boxShadow: {
         "default": "3px 3px 6px #00000029",

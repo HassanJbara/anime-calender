@@ -52,30 +52,38 @@ const showMenu = ref<boolean>(false);
       <div
         class="flex flex-col bg-[#fcfcfc] h-full w-full px-7 py-10 items-center"
       >
-        <div class="flex flex-row w-full items-center">
-          <span class="text-burger-text font-medium text-3xl">جدول العرض</span>
-          <img src="/calender.svg" width="35" height="35" class="float-right" />
+        <div class="flex flex-row w-11/12 items-center justify-between">
+          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
+            جدول العرض
+          </span>
+          <img src="/calender.svg" height="35" class="float-right w-9" />
         </div>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
-        <div class="flex flex-row">
-          <span class="text-burger-text font-medium text-3xl">أرشيف</span>
-          <img src="/archive.svg" width="35" height="35" class="float-right" />
+        <div class="flex flex-row w-11/12 items-center justify-between">
+          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
+            أرشيف
+          </span>
+          <img src="/archive.svg" height="35" class="float-right w-9" />
         </div>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
-        <div class="flex flex-row">
-          <span class="text-burger-text font-medium text-3xl">قادمة</span>
-          <img src="/next.svg" width="35" height="35" class="float-right" />
+        <div class="flex flex-row w-11/12 items-center justify-between">
+          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
+            قادمة
+          </span>
+          <img src="/next.svg" height="35" class="float-right w-9" />
         </div>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
-        <div class="flex flex-row">
-          <span class="text-burger-text font-medium text-3xl">الإعدادات</span>
-          <img src="/settings.svg" width="35" height="35" class="float-right" />
+        <div class="flex flex-row w-11/12 items-center justify-between">
+          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
+            الإعدادات
+          </span>
+          <img src="/settings.svg" height="35" class="float-right w-9" />
         </div>
       </div>
     </div>

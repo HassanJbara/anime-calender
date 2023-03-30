@@ -5,17 +5,19 @@ import { getFormatName } from "@/utils";
 
 const animeList: Anime[] = [
   {
-    name: "Steins;Gate",
+    name: "Tatoeba Last Dungeon Mae no Mura no Shounen ga Joban no Machi de Kurasu Youna Monogatari",
     cover_image: "",
     format: "TV",
     genres: ["COMEDY", "ACTION", "DRAMA", "ECCHI", "HAREM", "FANTASY"],
     id: 0,
-    next_episode: "",
+    next_episode: "4",
     next_episode_modifier_days: 0,
     season: "FALL",
     start_date: "",
-    story: "",
-    studio: "",
+    story:
+      "أعضاء عشيرة كريمسون ماجيك ميجومين و يونيون في قمة فصولهم و لكن لا يزال لديهم الكثير ليتعلموه، بدأت يونيون في تعلم السحر المتقدم و لكن ميجومين سلكت مسارًا مختلفًا وهو مسار سحر الانفجار! على الرغم من تحذيرها من فائدته المحدودة، تعتقد ميجومين أن سحر الانفجار هو السبيلها الوحيد لتصبح ساحرة عظيمة ومليئة بالحيوية، ولن تقتنع بخلاف ذلك! أعضاء عشيرة كريمسون ماجيك ميجومين و يونيون في قمة فصولهم و لكن لا يزال لديهم الكثير ليتعلموه، بدأت يونيون في تعلم السحر المتقدم و لكن ميجومين سلكت مسارًا مختلفًا وهو مسار سحر الانفجار! على الرغم من تحذيرها من فائدته المحدودة، تعتقد ميجومين أن سحر الانفجار هو السبيلها الوحيد لتصبح ساحرة عظيمة ومليئة بالحيوية، ولن تقتنع بخلاف ذلك!",
+    studio: "A-1 Pictures",
+    adaptation: "MANGA",
     year: 2000,
   },
   {
@@ -26,10 +28,11 @@ const animeList: Anime[] = [
     id: 0,
     next_episode: "",
     next_episode_modifier_days: 0,
-    season: "FALL",
+    season: "SPRING",
     start_date: "",
     story: "",
-    studio: "",
+    studio: "A-1 Pictures",
+    adaptation: "MANGA",
     year: 2000,
   },
   {
@@ -40,10 +43,11 @@ const animeList: Anime[] = [
     id: 0,
     next_episode: "",
     next_episode_modifier_days: 0,
-    season: "FALL",
+    season: "WINTER",
     start_date: "",
     story: "",
-    studio: "",
+    studio: "A-1 Pictures",
+    adaptation: "MANGA",
     year: 2000,
   },
   {
@@ -57,7 +61,8 @@ const animeList: Anime[] = [
     season: "FALL",
     start_date: "",
     story: "",
-    studio: "",
+    studio: "A-1 Pictures",
+    adaptation: "MANGA",
     year: 2000,
   },
 ];
@@ -87,7 +92,7 @@ const animeList: Anime[] = [
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-between w-full mt-11 gap-14">
+      <div class="flex flex-wrap justify-between w-full mt-11 gap-y-14">
         <AnimeCard v-for="anime in animeList" :key="anime.id" :anime="anime" />
       </div>
     </div>

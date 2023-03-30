@@ -1,5 +1,12 @@
 export const seasons = ["FALL", "SUMMER", "SPRING", "WINTER"] as const;
 export const formats = ["TV", "SHORT", "ONGOING", "MOVIE", "OTHER"] as const;
+export const adaptations = [
+  "MANGA",
+  "LIGHTNOVEL",
+  "GAME",
+  "ORIGINAL",
+  "OTHER",
+] as const;
 export const genres = [
   "COMEDY",
   "ACTION",
@@ -22,7 +29,9 @@ export const genres = [
 
 export type season = (typeof seasons)[number];
 export type format = (typeof formats)[number];
+export type adaptaion = (typeof adaptations)[number];
 export type genre = (typeof genres)[number];
+export type watchStatus = "not-watching" | "unsure" | "watching";
 
 export interface Anime {
   id: number;
@@ -33,6 +42,7 @@ export interface Anime {
   format: format;
   story: string;
   genres: genre[];
+  adaptation: adaptaion;
   cover_image: string;
   season: season;
   start_date: string;
