@@ -1,14 +1,18 @@
 import { defineStore } from "pinia";
 import api from "@/api";
-import type { Anime, AnimeSearch } from "@/modules";
+import type { Anime, AnimeSearch, season } from "@/modules";
 
 interface AnimesStoreState {
   animes: Anime[];
+  season: season;
+  year: number;
 }
 
 const defaultState = (): AnimesStoreState => {
   return {
     animes: [],
+    season: import.meta.env.VITE_CURRENT_SEASON,
+    year: new Date().getFullYear(),
   };
 };
 
@@ -19,7 +23,6 @@ export const useAnimeStore = defineStore("AnimeStore", {
       try {
         const data = await api.animes.getAll();
         this.animes = data.data;
-        // this.searchedHomes = data.data;
       } catch (error) {
         console.log(error);
       }
@@ -32,17 +35,38 @@ export const useAnimeStore = defineStore("AnimeStore", {
         console.log(error);
       }
     },
-    // clearSearch() {
-    //   this.searchedHomes = [];
-    // },
+    setSeason(newSeason: season) {
+      this.season = newSeason;
+    },
+
+    setYear(newYear: number) {
+      this.year = newYear;
+    },
+
+    clearState() {
+      this.season = import.meta.env.VITE_CURRENT_SEASON;
+      this.year = new Date().getFullYear();
+    },
   },
   getters: {
-    getAnimes: (state) => {
+    getAllAnimes: (state) => {
       return state.animes;
     },
-    // getSearchedHomes: (state) => {
-    //   return state.searchedHomes;
-    // },
+
+    getCurrentAnimes: (state) => {
+      return state.animes.filter(
+        (a) => a.season === state.season && a.year === state.year
+      );
+    },
+
+    getYear: (state) => {
+      return state.year;
+    },
+
+    getSeason: (state) => {
+      return state.season;
+    },
+
     getAnimeByID:
       (state) =>
       (search_id: number): Anime | undefined =>

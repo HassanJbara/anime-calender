@@ -5,20 +5,15 @@ import { getSeasonName, getSeasonTextColor, getSeasonBgColor } from "@/utils";
 import { BurgerMenu } from "@/components";
 
 import { computed } from "vue";
+import { useAnimeStore } from "@/stores";
 
-interface Props {
-  selectedSeason: season;
-  year: number;
-}
-
-const props = defineProps<Props>();
-
-const emit = defineEmits<{
-  (e: "changeSeason", s: season): void;
-}>();
+const animeStore = useAnimeStore();
+const selectedSeason = computed(() => {
+  return animeStore.getSeason;
+});
 
 const logoSVG = computed(() => {
-  switch (props.selectedSeason) {
+  switch (selectedSeason.value) {
     case "FALL":
       return "/logo-fall.svg";
     case "SPRING":
@@ -31,6 +26,10 @@ const logoSVG = computed(() => {
       return "";
   }
 });
+
+function changeSeason(newSeason: season) {
+  animeStore.setSeason(newSeason);
+}
 </script>
 
 <template>
@@ -43,7 +42,7 @@ const logoSVG = computed(() => {
         v-for="season in seasons.values()"
         :key="season"
         class="flex flex-col cursor-pointer"
-        @click="emit('changeSeason', season)"
+        @click="changeSeason(season)"
       >
         <span
           class="text-4xl font-medium"
@@ -74,7 +73,7 @@ const logoSVG = computed(() => {
               : 'text-default-gray'
           "
         >
-          {{ year }}
+          {{ animeStore.getYear }}
         </span>
       </div>
     </div>
