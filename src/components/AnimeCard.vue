@@ -1,21 +1,31 @@
 <script lang="ts" setup>
 import { Anime } from "@/modules";
 import type { watchStatus } from "@/modules";
-import { getGenreName, getSeasonColor, getAdaptationName } from "@/utils";
+import {
+  getGenreName,
+  getSeasonColor,
+  getAdaptationName,
+  getAiredEpisodeCount,
+} from "@/utils";
 
 import type { VNodeChild } from "vue";
 import { ref, computed, h } from "vue";
 import { NTag, NDropdown } from "naive-ui";
 import type { DropdownOption } from "naive-ui";
 import { dragscroll as vDragscroll } from "vue-dragscroll";
+import { useWatchingStore } from "@/stores";
 
 interface Props {
   anime: Anime;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
-const watchingStatus = ref<watchStatus | undefined>(undefined);
+const watchingStore = useWatchingStore();
+
+const watchingStatus = computed(() => {
+  return watchingStore.find_status(props.anime);
+});
 
 const statusIcon = computed(() => {
   switch (watchingStatus.value) {
@@ -58,8 +68,7 @@ const deleteOption = {
 };
 
 function changeWatchStatus(key: watchStatus | undefined) {
-  console.log("test");
-  watchingStatus.value = key;
+  watchingStore.update_status(props.anime, key);
 
   setTimeout(() => {
     if (options.value.length === 3) options.value.push(deleteOption);
@@ -95,9 +104,14 @@ function renderDropdownLabel(option: DropdownOption) {
         class="mt-8 mb-2 mx-5 flex flex-col gap-2 font-medium text-base text-watch-text text-justify"
         style="direction: rtl"
       >
-        <p>الحلقة 2 تعرض بعد</p>
+        <p>الحلقة {{ getAiredEpisodeCount(anime.start_date) + 1 }} تعرض بعد</p>
         <p class="font-medium text-next-episode text-[26px] my-3">
-          24 يوم، 21 ساعة
+          {{
+            anime.next_episode
+              .replaceAll("days", "يوم")
+              .replaceAll("and ", "و")
+              .replaceAll("hours", "ساعة")
+          }}
         </p>
         <p class="my-2">مقتبس من: {{ getAdaptationName(anime.adaptation) }}</p>
 
@@ -145,7 +159,7 @@ function renderDropdownLabel(option: DropdownOption) {
 
     <div class="h-full w-[38%] rounded-r-md relative">
       <img
-        src="/media/steins;gate.jpg"
+        :src="anime.cover_image"
         class="w-full h-full rounded-r-md"
         width="277"
       />
