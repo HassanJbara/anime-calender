@@ -1,22 +1,6 @@
 import { format, genre, season } from "./modules";
 import { adaptaion } from "./modules/animes";
 
-export function getSeasonName(s: season) {
-  switch (s) {
-    case "FALL":
-      return "الخريف";
-
-    case "SPRING":
-      return "الربيع";
-
-    case "SUMMER":
-      return "الصيف";
-
-    case "WINTER":
-      return "الشتاء";
-  }
-}
-
 export function getFormatName(f: format) {
   switch (f) {
     case "TV":
@@ -65,9 +49,32 @@ export function getGenreName(g: genre) {
     case "MECHA":
       return "ميكا";
 
+    case "MYSTERY":
+      return "غموض";
+
+    case "ROMANCE":
+      return "رومانسي";
+
+    case "SCHOOL":
+      return "مدرسي";
+
+    case "SCI-FI":
+      return "خيال علمي";
+
+    case "SHOUJO":
+      return "شوجو";
+
+    case "SHOUNEN":
+      return "شونين";
+
+    case "SLICE_OF_LIFE":
+      return "شريحة حياة";
+
+    case "SPORTS":
+      return "رياضي";
+
     default:
       return "";
-    // And the rest....
   }
 }
 
@@ -87,6 +94,22 @@ export function getAdaptationName(a: adaptaion) {
 
     case "OTHER":
       return "أخرى";
+  }
+}
+
+export function getSeasonName(s: season) {
+  switch (s) {
+    case "FALL":
+      return "الخريف";
+
+    case "SPRING":
+      return "الربيع";
+
+    case "SUMMER":
+      return "الصيف";
+
+    case "WINTER":
+      return "الشتاء";
   }
 }
 
@@ -127,4 +150,17 @@ export function getSeasonBgColor(s: season) {
     case "SUMMER":
       return "bg-summer-red";
   }
+}
+
+export function getAiredEpisodeCount(startDate: string) {
+  const currentDate = new Date();
+  const startDateDate = new Date(startDate);
+
+  if (startDateDate.getTime() > currentDate.getTime()) return 0;
+
+  const WEEK = 1000 * 60 * 60 * 24 * 7;
+
+  const diff = currentDate.getTime() - startDateDate.getTime();
+
+  return Math.floor(diff / WEEK) + 1; // +1 for the already aired episode in the past
 }
