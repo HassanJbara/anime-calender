@@ -1,1 +1,1 @@
-export {default as MainPageView} from './MainPageView.vue'
+export { default as AnimeListView } from "./AnimesListView.vue";
