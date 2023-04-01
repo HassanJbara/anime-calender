@@ -1,5 +1,4 @@
-import { format, genre, season } from "./modules";
-import { adaptaion } from "./modules/animes";
+import type { adaptaion, format, genre, season } from "@/modules";
 
 export function getFormatName(f: format) {
   switch (f) {

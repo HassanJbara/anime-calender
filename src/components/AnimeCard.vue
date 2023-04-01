@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { Anime } from "@/modules";
-import type { watchStatus } from "@/modules";
+import type { watchStatus, Anime } from "@/modules";
 import {
   getGenreName,
   getSeasonColor,

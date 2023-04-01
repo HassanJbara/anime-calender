@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 // import { useLocalStorage } from "@vueuse/core";
 
-import { Anime, watchStatus } from "@/modules";
+import type { Anime, watchStatus } from "@/modules";
 
 interface WatchingStoreState {
   watching: Anime[];
