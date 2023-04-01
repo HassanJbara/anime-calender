@@ -25,6 +25,7 @@ export const genres = [
   "SCI-FI",
   "SPORTS",
   "ECCHI",
+  "SEINEN",
 ] as const;
 
 export type season = (typeof seasons)[number];

@@ -60,6 +60,9 @@ export function getGenreName(g: genre) {
     case "SCI-FI":
       return "خيال علمي";
 
+    case "SEINEN":
+      return "سينين";
+
     case "SHOUJO":
       return "شوجو";
 

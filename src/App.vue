@@ -4,6 +4,8 @@ import { SiteHeader } from "@/components";
 
 import { onMounted } from "vue";
 
+document.title = "رزنمي";
+
 const animesStore = useAnimeStore();
 
 onMounted(() => {
