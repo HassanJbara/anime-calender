@@ -3,11 +3,12 @@ import { AnimeCard } from "@/components";
 import { formats, seasons } from "@/modules";
 import { useAnimeStore } from "@/stores";
 import { getFormatName } from "@/utils";
-import { onBeforeRouteUpdate } from "vue-router";
-import router from "@/router";
+
+import { onBeforeRouteUpdate, useRouter } from "vue-router";
 import type { RouteLocationNormalized } from "vue-router";
 
 const animeStore = useAnimeStore();
+const router = useRouter();
 
 onBeforeRouteUpdate((to: RouteLocationNormalized) => {
   const animesStore = useAnimeStore();

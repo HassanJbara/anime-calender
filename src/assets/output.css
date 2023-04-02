@@ -559,6 +559,10 @@ video {
   bottom: 0px;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .float-right {
   float: right;
 }
@@ -593,12 +597,20 @@ video {
   margin-bottom: 1.5rem;
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mb-52 {
+  margin-bottom: 13rem;
+}
+
+.ml-11 {
+  margin-left: 2.75rem;
+}
+
+.ml-24 {
+  margin-left: 6rem;
 }
 
 .ml-6 {
@@ -635,6 +647,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .flex {
@@ -677,6 +693,11 @@ video {
   height: 60vh;
 }
 
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .h-full {
   height: 100%;
 }
@@ -715,6 +736,10 @@ video {
 
 .w-48 {
   width: 12rem;
+}
+
+.w-60 {
+  width: 15rem;
 }
 
 .w-8\/12 {
@@ -1070,4 +1095,38 @@ video {
 
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.placeholder\:m-1::-moz-placeholder {
+  margin: 0.25rem;
+}
+
+.placeholder\:m-1::placeholder {
+  margin: 0.25rem;
+}
+
+.placeholder\:text-right::-moz-placeholder {
+  text-align: right;
+}
+
+.placeholder\:text-right::placeholder {
+  text-align: right;
+}
+
+.placeholder\:align-middle::-moz-placeholder {
+  vertical-align: middle;
+}
+
+.placeholder\:align-middle::placeholder {
+  vertical-align: middle;
+}
+
+.placeholder\:text-base::-moz-placeholder {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.placeholder\:text-base::placeholder {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }

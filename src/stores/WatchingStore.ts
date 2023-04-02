@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { useLocalStorage, type RemovableRef } from "@vueuse/core";
 
-import type { Anime, watchStatus } from "@/modules";
+import type { watchStatus } from "@/modules";
 
 interface WatchingStoreState {
   watching: RemovableRef<number[]>;
