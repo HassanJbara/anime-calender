@@ -1,10 +1,31 @@
 <script lang="ts" setup>
 import { AnimeCard } from "@/components";
-import { formats } from "@/modules";
+import { formats, seasons } from "@/modules";
 import { useAnimeStore } from "@/stores";
 import { getFormatName } from "@/utils";
+import { onBeforeRouteUpdate } from "vue-router";
+import router from "@/router";
+import type { RouteLocationNormalized } from "vue-router";
 
 const animeStore = useAnimeStore();
+
+onBeforeRouteUpdate((to: RouteLocationNormalized) => {
+  const animesStore = useAnimeStore();
+  const seasonName = seasons.find(
+    (validName) => validName === to.params.season.toString().toUpperCase()
+  );
+
+  if (seasonName) animesStore.setSeason(seasonName);
+  else
+    return {
+      name: "not-found",
+      params: { year: to.params.year, season: to.params.season },
+    };
+
+  animesStore.setYear(Number(to.params.year));
+
+  router.push(to.path);
+});
 </script>
 
 <template>

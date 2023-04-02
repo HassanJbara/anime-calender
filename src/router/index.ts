@@ -15,9 +15,7 @@ const routes = [
 
     beforeEnter() {
       const animeStore = useAnimeStore();
-      return animeStore.clearState().then(() => {
-        return;
-      });
+      return animeStore.clearState();
     },
   },
   {
