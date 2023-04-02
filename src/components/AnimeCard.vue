@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { watchStatus, Anime } from "@/modules";
+import { useWatchingStore } from "@/stores";
 import {
   getGenreName,
   getSeasonColor,
@@ -7,12 +8,11 @@ import {
   getAiredEpisodeCount,
 } from "@/utils";
 
-import type { VNodeChild } from "vue";
+import { onMounted, type VNodeChild } from "vue";
 import { ref, computed, h } from "vue";
 import { NTag, NDropdown } from "naive-ui";
 import type { DropdownOption } from "naive-ui";
 import { dragscroll as vDragscroll } from "vue-dragscroll";
-import { useWatchingStore } from "@/stores";
 
 interface Props {
   anime: Anime;
@@ -23,7 +23,7 @@ const props = defineProps<Props>();
 const watchingStore = useWatchingStore();
 
 const watchingStatus = computed(() => {
-  return watchingStore.find_status(props.anime);
+  return watchingStore.find_status(props.anime.id);
 });
 
 const statusIcon = computed(() => {
@@ -67,19 +67,17 @@ const deleteOption = {
 };
 
 function changeWatchStatus(key: watchStatus | undefined) {
-  watchingStore.update_status(props.anime, key);
+  watchingStore.update_status(props.anime.id, key);
 
   setTimeout(() => {
-    if (options.value.length === 3) options.value.push(deleteOption);
-    else options.value.splice(options.value.length - 1, 1);
+    if (options.value.length < 4 && watchingStatus.value)
+      options.value.push(deleteOption);
+    if (!watchingStatus.value)
+      options.value.splice(options.value.length - 1, 1);
   }, 400);
 }
 
 function renderDropdownLabel(option: DropdownOption) {
-  if (option.type === "group") {
-    return option.label as VNodeChild;
-  }
-
   return h(
     "span",
     {
@@ -90,6 +88,10 @@ function renderDropdownLabel(option: DropdownOption) {
     }
   );
 }
+
+onMounted(() => {
+  if (watchingStatus.value) options.value.push(deleteOption);
+});
 </script>
 
 <template>
@@ -103,10 +105,15 @@ function renderDropdownLabel(option: DropdownOption) {
         class="mt-8 mb-2 mx-5 flex flex-col gap-2 font-medium text-base text-watch-text text-justify"
         style="direction: rtl"
       >
-        <p>الحلقة {{ getAiredEpisodeCount(anime.start_date) + 1 }} تعرض بعد</p>
+        <p v-if="anime.format === 'MOVIE'">الفيلم يعرض بعد</p>
+        <p v-else>
+          الحلقة {{ getAiredEpisodeCount(anime.start_date) + 1 }} تعرض بعد
+        </p>
+
         <p class="font-medium text-next-episode text-[26px] my-3">
           {{
             anime.next_episode
+              .replaceAll("month", "شهر")
               .replaceAll("days", "يوم")
               .replaceAll("and ", "و")
               .replaceAll("hours", "ساعة")

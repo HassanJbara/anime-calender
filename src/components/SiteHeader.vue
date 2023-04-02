@@ -6,6 +6,7 @@ import { BurgerMenu } from "@/components";
 
 import { computed } from "vue";
 import { useAnimeStore } from "@/stores";
+import router from "@/router";
 
 const animeStore = useAnimeStore();
 const selectedSeason = computed(() => {
@@ -28,7 +29,10 @@ const logoSVG = computed(() => {
 });
 
 function changeSeason(newSeason: season) {
-  animeStore.setSeason(newSeason);
+  // animeStore.setSeason(newSeason);
+  router.replace(
+    "/" + animeStore.getYear.toString() + "/" + newSeason.toLowerCase()
+  );
 }
 </script>
 
@@ -79,6 +83,13 @@ function changeSeason(newSeason: season) {
     </div>
 
     <!-- Logo -->
-    <img height="100" width="150" :src="logoSVG" />
+    <router-link to="/" class="self-center">
+      <img
+        height="100"
+        width="150"
+        :src="logoSVG"
+        @click="() => animeStore.clearState()"
+      />
+    </router-link>
   </div>
 </template>

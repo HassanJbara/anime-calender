@@ -5,43 +5,46 @@ import {
 } from "vue-router";
 
 import { useAnimeStore } from "@/stores";
+import { AnimeListView, NotFoundView } from "@/views";
 import { seasons } from "@/modules";
-import { AnimeListView } from "@/views";
 
 const routes = [
   {
     path: "/",
     component: AnimeListView,
-    props: {
-      selectedSeason: import.meta.env.VITE_CURRENT_SEASON, // current season
-      year: new Date().getFullYear(), // current year
+
+    beforeEnter() {
+      const animeStore = useAnimeStore();
+      return animeStore.clearState().then(() => {
+        return;
+      });
     },
   },
   {
     path: "/:year/:season",
     name: "year-season",
     component: AnimeListView,
-    // beforeEnter(to: RouteLocationNormalized) {
-    //   const animesStore = useAnimeStore();
-    //   const seasonName = seasons.find(
-    //     (validName) => validName === to.params.season.toString().toUpperCase()
-    //   );
-    //   const animesGroup = animesStore.search({
-    //     season: seasonName,
-    //   });
-    //   // if (!destinationHome) {
-    //   //   return {
-    //   //     name: "not-found-home",
-    //   //     params: { id: to.params.id },
-    //   //   };
-    //   // }
-    // },
+    beforeEnter(to: RouteLocationNormalized) {
+      const animesStore = useAnimeStore();
+      const seasonName = seasons.find(
+        (validName) => validName === to.params.season.toString().toUpperCase()
+      );
+
+      if (seasonName) animesStore.setSeason(seasonName);
+      else
+        return {
+          name: "not-found",
+          params: { year: to.params.year, season: to.params.season },
+        };
+
+      animesStore.setYear(Number(to.params.year));
+    },
   },
-  // {
-  //   path: "/:pathMatch(.*)*",
-  //   name: "not-found",
-  //   component: NotFoundView,
-  // },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: NotFoundView,
+  },
 ];
 
 const router = createRouter({

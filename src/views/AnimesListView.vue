@@ -8,7 +8,7 @@ const animeStore = useAnimeStore();
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="w-full mb-10">
     <div
       v-for="format in formats.values()"
       :key="format"

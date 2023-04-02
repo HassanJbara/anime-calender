@@ -11,7 +11,7 @@ interface AnimesStoreState {
 const defaultState = (): AnimesStoreState => {
   return {
     animes: [],
-    season: import.meta.env.VITE_CURRENT_SEASON,
+    season: "FALL",
     year: new Date().getFullYear(),
   };
 };
@@ -43,8 +43,14 @@ export const useAnimeStore = defineStore("AnimeStore", {
       this.year = newYear;
     },
 
-    clearState() {
-      this.season = import.meta.env.VITE_CURRENT_SEASON;
+    async clearState() {
+      await api.animes
+        .getCurrentSeasonName()
+        .then(({ data }) => {
+          this.season = data.current_season;
+        })
+        .catch((err) => console.error(err));
+
       this.year = new Date().getFullYear();
     },
   },
@@ -71,5 +77,17 @@ export const useAnimeStore = defineStore("AnimeStore", {
       (state) =>
       (search_id: number): Anime | undefined =>
         state.animes.find((a) => a.id == search_id),
+
+    getCurrentSeason: () => {
+      api.animes
+        .getCurrentSeasonName()
+        .then(({ data }) => {
+          return data.current_season;
+        })
+        .catch((err) => {
+          console.error(err);
+          return undefined;
+        });
+    },
   },
 });
