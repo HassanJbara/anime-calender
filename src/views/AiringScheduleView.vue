@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { weekdays } from "@/modules";
 import { useAnimeStore } from "@/stores";
-import { getFormatName } from "@/utils";
 import { AnimeCardMini } from "@/components";
 
 import { computed, onMounted } from "vue";

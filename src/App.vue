@@ -15,7 +15,7 @@ onBeforeMount(() => {
 
 <template>
   <transition name="fade" mode="out-in">
-    <div class="mx-44 mt-14" :key="animeStore.getSeason">
+    <div class="mx-44 mt-14" :key="$route.path">
       <SiteHeader />
 
       <router-view />

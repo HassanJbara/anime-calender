@@ -1,15 +1,12 @@
 <script lang="ts" setup>
-import { formats, seasons } from "@/modules";
+import { formats } from "@/modules";
 import { useAnimeStore } from "@/stores";
 import { getFormatName } from "@/utils";
 import { AnimeCard } from "@/components";
 
-import { onBeforeRouteUpdate, useRouter } from "vue-router";
-import type { RouteLocationNormalized } from "vue-router";
 import { computed, ref } from "vue";
 
 const animeStore = useAnimeStore();
-const router = useRouter();
 const showSearch = ref<boolean>(false);
 const searchValue = ref<string | undefined>(undefined);
 
@@ -22,24 +19,6 @@ const animes = computed(() => {
         a.studio.toLowerCase().includes(realValue.toLowerCase())
     );
   } else return animeStore.getCurrentAnimes;
-});
-
-onBeforeRouteUpdate((to: RouteLocationNormalized) => {
-  const animesStore = useAnimeStore();
-  const seasonName = seasons.find(
-    (validName) => validName === to.params.season.toString().toUpperCase()
-  );
-
-  if (seasonName) animesStore.setSeason(seasonName);
-  else
-    return {
-      name: "not-found",
-      params: { year: to.params.year, season: to.params.season },
-    };
-
-  animesStore.setYear(Number(to.params.year));
-
-  router.push(to.path);
 });
 </script>
 

@@ -11,31 +11,23 @@ import { seasons } from "@/modules";
 const routes = [
   {
     path: "/",
+    name: "default",
     component: AnimeListView,
-
-    beforeEnter() {
-      const animeStore = useAnimeStore();
-      return animeStore.clearState();
-    },
   },
   {
     path: "/:year/:season",
     name: "year-season",
     component: AnimeListView,
     beforeEnter(to: RouteLocationNormalized) {
-      const animesStore = useAnimeStore();
       const seasonName = seasons.find(
         (validName) => validName === to.params.season.toString().toUpperCase()
       );
 
-      if (seasonName) animesStore.setSeason(seasonName);
-      else
+      if (!seasonName)
         return {
           name: "not-found",
           params: { year: to.params.year, season: to.params.season },
         };
-
-      animesStore.setYear(Number(to.params.year));
     },
   },
   {
@@ -61,6 +53,25 @@ const router = createRouter({
       })
     );
   },
+});
+
+router.afterEach((to: RouteLocationNormalized) => {
+  const animeStore = useAnimeStore();
+
+  if (to.name === "default") {
+    animeStore.clearState();
+  }
+
+  if (to.name === "year-season") {
+    const seasonName = seasons.find(
+      (validName) => validName === to.params.season.toString().toUpperCase()
+    );
+
+    if (seasonName) {
+      animeStore.setSeason(seasonName);
+      animeStore.setYear(Number(to.params.year));
+    }
+  }
 });
 
 export default router;

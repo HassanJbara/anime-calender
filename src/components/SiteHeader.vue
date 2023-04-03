@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { seasons } from "@/modules";
-import type { season } from "@/modules";
 import { getSeasonName, getSeasonTextColor, getSeasonBgColor } from "@/utils";
 import { BurgerMenu } from "@/components";
 import { useAnimeStore } from "@/stores";
@@ -8,9 +7,13 @@ import { useAnimeStore } from "@/stores";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 
+const router = useRouter();
 const animeStore = useAnimeStore();
 const selectedSeason = computed(() => {
   return animeStore.getSeason;
+});
+const selectedYear = computed(() => {
+  return animeStore.getYear;
 });
 
 const logoSVG = computed(() => {
@@ -27,15 +30,6 @@ const logoSVG = computed(() => {
       return "";
   }
 });
-
-const router = useRouter();
-
-function changeSeason(newSeason: season) {
-  // animeStore.setSeason(newSeason);
-  router.replace(
-    "/" + animeStore.getYear.toString() + "/" + newSeason.toLowerCase()
-  );
-}
 </script>
 
 <template>
@@ -53,11 +47,11 @@ function changeSeason(newSeason: season) {
 
     <!-- Seasons List -->
     <div class="flex flex-row gap-10" v-else>
-      <div
+      <router-link
         v-for="season in seasons.values()"
         :key="season"
-        class="flex flex-col cursor-pointer"
-        @click="changeSeason(season)"
+        :to="'/' + selectedYear.toString() + '/' + season.toLowerCase()"
+        class="flex flex-col"
       >
         <span
           class="text-4xl font-medium"
@@ -90,7 +84,7 @@ function changeSeason(newSeason: season) {
         >
           {{ animeStore.getYear }}
         </span>
-      </div>
+      </router-link>
     </div>
 
     <!-- Logo -->
