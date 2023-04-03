@@ -7,4 +7,4 @@ export type {
   adaptaion,
   watchStatus,
 } from "./animes";
-export { seasons, formats, genres, adaptations } from "./animes";
+export { seasons, formats, genres, adaptations, weekdays } from "./animes";

@@ -27,6 +27,15 @@ export const genres = [
   "ECCHI",
   "SEINEN",
 ] as const;
+export const weekdays = [
+  "Monday",
+  "Thursday",
+  "Wednsday",
+  "Tuseday",
+  "Firday",
+  "Saturday",
+  "Sunday",
+];
 
 export type season = (typeof seasons)[number];
 export type format = (typeof formats)[number];

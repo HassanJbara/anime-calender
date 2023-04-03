@@ -52,12 +52,16 @@ const showMenu = ref<boolean>(false);
       <div
         class="flex flex-col bg-[#fcfcfc] h-full w-full px-7 py-10 items-center"
       >
-        <div class="flex flex-row w-11/12 items-center justify-between">
+        <router-link
+          to="/airing-schedule"
+          class="flex flex-row w-11/12 items-center justify-between"
+          @click="showMenu = false"
+        >
           <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
             جدول العرض
           </span>
           <img src="/calender.svg" height="35" class="float-right w-9" />
-        </div>
+        </router-link>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 

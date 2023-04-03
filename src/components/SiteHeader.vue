@@ -3,10 +3,10 @@ import { seasons } from "@/modules";
 import type { season } from "@/modules";
 import { getSeasonName, getSeasonTextColor, getSeasonBgColor } from "@/utils";
 import { BurgerMenu } from "@/components";
+import { useAnimeStore } from "@/stores";
 
 import { computed } from "vue";
-import { useAnimeStore } from "@/stores";
-import router from "@/router";
+import { useRouter } from "vue-router";
 
 const animeStore = useAnimeStore();
 const selectedSeason = computed(() => {
@@ -28,6 +28,8 @@ const logoSVG = computed(() => {
   }
 });
 
+const router = useRouter();
+
 function changeSeason(newSeason: season) {
   // animeStore.setSeason(newSeason);
   router.replace(
@@ -40,8 +42,17 @@ function changeSeason(newSeason: season) {
   <div class="flex flex-row justify-between">
     <BurgerMenu :accent-color="getSeasonBgColor(selectedSeason)" />
 
+    <div
+      v-if="router.currentRoute.value.name === 'schedule'"
+      class="flex flex-col"
+    >
+      <span class="text-4xl font-medium text-format-text"> جدول العرض </span>
+
+      <div class="mt-1.5 w-4/5 h-0.5 self-center rounded-md bg-format-text" />
+    </div>
+
     <!-- Seasons List -->
-    <div class="flex flex-row gap-10">
+    <div class="flex flex-row gap-10" v-else>
       <div
         v-for="season in seasons.values()"
         :key="season"

@@ -5,7 +5,7 @@ import {
 } from "vue-router";
 
 import { useAnimeStore } from "@/stores";
-import { AnimeListView, NotFoundView } from "@/views";
+import { AnimeListView, NotFoundView, AiringScheduleView } from "@/views";
 import { seasons } from "@/modules";
 
 const routes = [
@@ -37,6 +37,11 @@ const routes = [
 
       animesStore.setYear(Number(to.params.year));
     },
+  },
+  {
+    path: "/airing-schedule",
+    name: "schedule",
+    component: AiringScheduleView,
   },
   {
     path: "/:pathMatch(.*)*",

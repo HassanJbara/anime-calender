@@ -110,7 +110,10 @@ onMounted(() => {
           الحلقة {{ getAiredEpisodeCount(anime.start_date) + 1 }} تعرض بعد
         </p>
 
-        <p class="font-medium text-next-episode text-[26px] my-3">
+        <p
+          class="font-medium text-next-episode text-[26px] my-3"
+          v-if="anime.next_episode"
+        >
           {{
             anime.next_episode
               .replaceAll("month", "شهر")
