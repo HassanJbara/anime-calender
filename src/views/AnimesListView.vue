@@ -1,14 +1,28 @@
 <script lang="ts" setup>
-import { AnimeCard } from "@/components";
 import { formats, seasons } from "@/modules";
 import { useAnimeStore } from "@/stores";
 import { getFormatName } from "@/utils";
+import { AnimeCard } from "@/components";
 
 import { onBeforeRouteUpdate, useRouter } from "vue-router";
 import type { RouteLocationNormalized } from "vue-router";
+import { computed, ref } from "vue";
 
 const animeStore = useAnimeStore();
 const router = useRouter();
+const showSearch = ref<boolean>(false);
+const searchValue = ref<string | undefined>(undefined);
+
+const animes = computed(() => {
+  if (searchValue.value) {
+    const realValue = searchValue.value;
+    return animeStore.getCurrentAnimes.filter(
+      (a) =>
+        a.name.toLowerCase().includes(realValue.toLowerCase()) ||
+        a.studio.toLowerCase().includes(realValue.toLowerCase())
+    );
+  } else return animeStore.getCurrentAnimes;
+});
 
 onBeforeRouteUpdate((to: RouteLocationNormalized) => {
   const animesStore = useAnimeStore();
@@ -41,10 +55,37 @@ onBeforeRouteUpdate((to: RouteLocationNormalized) => {
       >
         <div v-if="format === 'TV'" class="flex flex-row justify-between">
           <div class="flex flex-row gap-9">
-            <img src="/sort.svg" width="20" />
-            <img src="/search.svg" width="28" />
-            <img src="/share.svg" width="31" />
+            <!-- <img src="/sort.svg" width="20" /> -->
+
+            <div class="flex flex-row">
+              <img
+                src="/search.svg"
+                width="28"
+                class="cursor-pointer"
+                @click="showSearch = !showSearch"
+              />
+
+              <Transition
+                enter-active-class="duration-300 ease-out"
+                enter-from-class="transform opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="duration-200 ease-in"
+                leave-from-class="opacity-100"
+                leave-to-class="transform opacity-0"
+              >
+                <input
+                  v-if="showSearch"
+                  type="text"
+                  placeholder="ابحث باسم الأنمي أو الاستديو"
+                  class="text-lg placeholder:text-right placeholder:text-base rounded w-60 h-9 p-2 shadow-menu absolute ml-10"
+                  v-model="searchValue"
+                />
+              </Transition>
+            </div>
+
+            <!-- <img src="/share.svg" width="31" /> -->
           </div>
+
           {{ getFormatName(format) }}
         </div>
 
@@ -55,9 +96,7 @@ onBeforeRouteUpdate((to: RouteLocationNormalized) => {
 
       <div class="flex flex-wrap justify-between w-full mt-11 gap-y-14">
         <AnimeCard
-          v-for="anime in animeStore.getCurrentAnimes.filter(
-            (a) => a.format === format
-          )"
+          v-for="anime in animes.filter((a) => a.format === format)"
           :key="anime.id"
           :anime="anime"
         />
