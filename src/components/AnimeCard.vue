@@ -81,7 +81,7 @@ function renderDropdownLabel(option: DropdownOption) {
   return h(
     "span",
     {
-      class: "text-watch-text text-xl font-medium",
+      class: "text-watch-text text-xl font-medium font-main",
     },
     {
       default: () => option.label as VNodeChild,
@@ -100,7 +100,7 @@ onMounted(() => {
   >
     <!-- Content -->
 
-    <div class="flex flex-col justify-between w-[62%] max-h-full">
+    <div class="flex flex-col justify-between w-[62%] max-h-full font-main">
       <div
         class="mt-8 mb-2 mx-5 flex flex-col gap-2 font-medium text-base text-watch-text text-justify"
         style="direction: rtl"

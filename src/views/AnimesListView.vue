@@ -11,7 +11,7 @@ const showSearch = ref<boolean>(false);
 const searchValue = ref<string | undefined>(undefined);
 
 const animes = computed(() => {
-  if (searchValue.value) {
+  if (searchValue.value && showSearch.value) {
     const realValue = searchValue.value;
     return animeStore.getCurrentAnimes.filter(
       (a) =>
@@ -30,7 +30,7 @@ const animes = computed(() => {
       class="flex flex-col w-full mt-16"
     >
       <div
-        class="font-medium text-3xl text-format-text text-right items-center"
+        class="font-semibold font-main text-3xl text-format-text text-right items-center"
       >
         <div v-if="format === 'TV'" class="flex flex-row justify-between">
           <div class="flex flex-row gap-9">
@@ -56,7 +56,7 @@ const animes = computed(() => {
                   v-if="showSearch"
                   type="text"
                   placeholder="ابحث باسم الأنمي أو الاستديو"
-                  class="text-lg placeholder:text-right placeholder:text-base rounded w-60 h-9 p-2 shadow-menu absolute ml-10"
+                  class="text-lg placeholder:text-right placeholder:text-base placeholder:font-main font-main rounded w-60 h-9 p-2 shadow-menu absolute ml-10"
                   v-model="searchValue"
                 />
               </Transition>

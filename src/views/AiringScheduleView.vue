@@ -23,7 +23,9 @@ onMounted(() => {
     :key="weekday"
     class="flex flex-col w-full mt-16 mb-10"
   >
-    <div class="w-full font-medium text-3xl text-format-text text-right">
+    <div
+      class="w-full font-main font-semibold text-3xl text-format-text text-right"
+    >
       {{ getWeekdayName(weekday) }}
     </div>
 

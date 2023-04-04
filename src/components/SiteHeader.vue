@@ -17,6 +17,9 @@ const selectedYear = computed(() => {
 });
 
 const logoSVG = computed(() => {
+  if (router.currentRoute.value.name === "schedule")
+    return "/logo-schedule.svg";
+
   switch (selectedSeason.value) {
     case "FALL":
       return "/logo-fall.svg";
@@ -34,13 +37,21 @@ const logoSVG = computed(() => {
 
 <template>
   <div class="flex flex-row justify-between">
-    <BurgerMenu :accent-color="getSeasonBgColor(selectedSeason)" />
+    <BurgerMenu
+      :accent-color="
+        router.currentRoute.value.name === 'schedule'
+          ? 'bg-format-text'
+          : getSeasonBgColor(selectedSeason)
+      "
+    />
 
     <div
       v-if="router.currentRoute.value.name === 'schedule'"
       class="flex flex-col"
     >
-      <span class="text-4xl font-medium text-format-text"> جدول العرض </span>
+      <span class="text-4xl text-format-text font-main font-semibold">
+        جدول العرض
+      </span>
 
       <div class="mt-1.5 w-4/5 h-0.5 self-center rounded-md bg-format-text" />
     </div>
@@ -51,10 +62,9 @@ const logoSVG = computed(() => {
         v-for="season in seasons.values()"
         :key="season"
         :to="'/' + selectedYear.toString() + '/' + season.toLowerCase()"
-        class="flex flex-col"
+        class="flex flex-col font-main font-semibold text-4xl"
       >
         <span
-          class="text-4xl font-medium"
           :class="
             selectedSeason === season
               ? getSeasonTextColor(season)

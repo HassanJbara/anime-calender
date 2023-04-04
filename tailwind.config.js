@@ -22,6 +22,9 @@ module.exports = {
         "menu": "0px 3px 10px #00000029",
         "anime-card": "8px 8px 25px #00000029",
       },
+      fontFamily: {
+        "main": ['"Tajawal"'],
+      },
     },
   },
   plugins: [],

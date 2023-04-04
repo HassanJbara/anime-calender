@@ -50,43 +50,35 @@ const showMenu = ref<boolean>(false);
       </div>
 
       <div
-        class="flex flex-col bg-[#fcfcfc] h-full w-full px-7 py-10 items-center"
+        class="flex flex-col bg-[#fcfcfc] h-full w-full px-7 py-10 items-center text-burger-text font-main font-semibold text-3xl"
       >
         <router-link
           to="/airing-schedule"
           class="flex flex-row w-11/12 items-center justify-between"
           @click="showMenu = false"
         >
-          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
-            جدول العرض
-          </span>
+          <span class="w-9/12 text-right"> جدول العرض </span>
           <img src="/calender.svg" height="35" class="float-right w-9" />
         </router-link>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
         <div class="flex flex-row w-11/12 items-center justify-between">
-          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
-            أرشيف
-          </span>
+          <span class="w-8/12 text-right"> أرشيف </span>
           <img src="/archive.svg" height="35" class="float-right w-9" />
         </div>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
         <div class="flex flex-row w-11/12 items-center justify-between">
-          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
-            قادمة
-          </span>
+          <span class="w-8/12 text-right"> قادمة </span>
           <img src="/next.svg" height="35" class="float-right w-9" />
         </div>
 
         <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
         <div class="flex flex-row w-11/12 items-center justify-between">
-          <span class="text-burger-text font-medium text-3xl w-8/12 text-right">
-            الإعدادات
-          </span>
+          <span class="w-8/12 text-right"> الإعدادات </span>
           <img src="/settings.svg" height="35" class="float-right w-9" />
         </div>
       </div>
