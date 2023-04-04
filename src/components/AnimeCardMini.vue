@@ -2,6 +2,8 @@
 import type { Anime } from "@/modules";
 import { getAiredEpisodeCount } from "@/utils";
 
+import { NEllipsis } from "naive-ui";
+
 interface Props {
   anime: Anime;
 }
@@ -16,16 +18,17 @@ defineProps<Props>();
     <!-- Content -->
 
     <div
-      class="flex flex-col justify-center gap-4 w-[85%] max-h-full py-2 px-4"
+      class="flex flex-col justify-center gap-4 w-[85%] max-h-full py-2 px-4 text-watch-text font-main"
     >
-      <p class="text-watch-text text-lg font-semibold">
+      <n-ellipsis class="max-w-full text-lg font-semibold">
         {{ anime.name }}
-      </p>
+      </n-ellipsis>
 
-      <div
-        class="font-medium text-sm text-watch-text text-justify"
-        style="direction: rtl"
-      >
+      <!-- <p class="text-lg font-semibold">
+          {{ anime.name }}
+        </p> -->
+
+      <div class="font-medium text-sm text-justify" style="direction: rtl">
         الحلقة {{ getAiredEpisodeCount(anime.start_date) + 1 }} تعرض بعد
 
         {{ anime.next_episode }}
