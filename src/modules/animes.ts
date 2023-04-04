@@ -29,23 +29,25 @@ export const genres = [
 ] as const;
 export const weekdays = [
   "Monday",
+  "Tuesday",
+  "Wednesday",
   "Thursday",
-  "Wednsday",
-  "Tuseday",
-  "Firday",
+  "Friday",
   "Saturday",
   "Sunday",
-];
+] as const;
 
 export type season = (typeof seasons)[number];
 export type format = (typeof formats)[number];
 export type adaptaion = (typeof adaptations)[number];
 export type genre = (typeof genres)[number];
+export type weekday = (typeof weekdays)[number];
 export type watchStatus = "not-watching" | "unsure" | "watching";
 
 export interface Anime {
   id: number;
   next_episode: string;
+  weekday: weekday;
   year: number;
   name: string;
   studio: string;

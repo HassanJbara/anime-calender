@@ -1,4 +1,4 @@
-import type { adaptaion, format, genre, season } from "@/modules";
+import type { adaptaion, format, genre, season, weekday } from "@/modules";
 
 export function getFormatName(f: format) {
   switch (f) {
@@ -165,4 +165,29 @@ export function getAiredEpisodeCount(startDate: string) {
   const diff = currentDate.getTime() - startDateDate.getTime();
 
   return Math.floor(diff / WEEK) + 1; // +1 for the already aired episode in the past
+}
+
+export function getWeekdayName(day: weekday) {
+  switch (day) {
+    case "Monday":
+      return "الاثنين";
+
+    case "Tuesday":
+      return "الثلاثاء";
+
+    case "Wednesday":
+      return "الأربعاء";
+
+    case "Thursday":
+      return "الخميس";
+
+    case "Friday":
+      return "الجمعة";
+
+    case "Saturday":
+      return "السبت";
+
+    case "Sunday":
+      return "الأحد";
+  }
 }

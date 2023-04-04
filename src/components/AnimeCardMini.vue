@@ -25,17 +25,10 @@ defineProps<Props>();
       <div
         class="font-medium text-sm text-watch-text text-justify"
         style="direction: rtl"
-        v-if="anime.next_episode"
       >
         الحلقة {{ getAiredEpisodeCount(anime.start_date) + 1 }} تعرض بعد
 
-        {{
-          anime.next_episode
-            .replaceAll("month", "شهر")
-            .replaceAll("days", "يوم")
-            .replaceAll("and ", "و")
-            .replaceAll("hours", "ساعة")
-        }}
+        {{ anime.next_episode }}
       </div>
     </div>
 
