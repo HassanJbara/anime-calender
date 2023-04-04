@@ -9,7 +9,9 @@ import { computed, onMounted } from "vue";
 const animeStore = useAnimeStore();
 
 const animes = computed(() => {
-  return animeStore.getCurrentAnimes;
+  return animeStore.getCurrentAnimes.filter(
+    (a) => a.format === "TV" || a.format === "ONGOING" || a.format === "SHORT"
+  );
 });
 
 onMounted(() => {
