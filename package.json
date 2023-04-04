@@ -1,6 +1,6 @@
 {
   "name": "roznami",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "scripts": {
     "dev": "vite",
     "tw": "tailwindcss -i ./src/assets/base.css -o ./src/assets/output.css --watch",
