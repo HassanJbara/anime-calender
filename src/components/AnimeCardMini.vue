@@ -4,7 +4,6 @@ import { useWatchingStore } from "@/stores";
 import { getAiredEpisodeCount } from "@/utils";
 
 import { NEllipsis } from "naive-ui";
-import { computed } from "vue";
 
 interface Props {
   anime: Anime;
