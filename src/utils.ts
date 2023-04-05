@@ -42,11 +42,17 @@ export function getGenreName(g: genre) {
     case "HAREM":
       return "هاريم";
 
+    case "HISTORICAL":
+      return "تاريخي";
+
     case "ISEKAI":
       return "إيسيكاي";
 
     case "MECHA":
       return "ميكا";
+
+    case "MUSICAL":
+      return "موسيقي";
 
     case "MYSTERY":
       return "غموض";
