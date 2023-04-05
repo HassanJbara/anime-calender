@@ -48,6 +48,9 @@ export function getGenreName(g: genre) {
     case "ISEKAI":
       return "إيسيكاي";
 
+    case "MAGIC":
+      return "سحر";
+
     case "MECHA":
       return "ميكا";
 

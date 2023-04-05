@@ -28,6 +28,7 @@ export const genres = [
   "SEINEN",
   "HISTORICAL",
   "MUSICAL",
+  "MAGIC",
 ] as const;
 export const weekdays = [
   "Monday",
