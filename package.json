@@ -1,6 +1,6 @@
 {
   "name": "roznami",
-  "version": "0.7.5",
+  "version": "0.8.0",
   "scripts": {
     "dev": "vite",
     "tw": "tailwindcss -i ./src/assets/base.css -o ./src/assets/output.css --watch",
@@ -13,6 +13,7 @@
     "@types/node": "^18.14.0",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^11.0.2",
+    "@vueuse/components": "^9.13.0",
     "@vueuse/core": "^9.13.0",
     "axios": "^1.3.4",
     "compression": "^1.7.4",

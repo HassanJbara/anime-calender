@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
+import { vOnClickOutside } from "@vueuse/components";
 
 interface Props {
   accentColor: string | undefined;
@@ -8,12 +9,13 @@ interface Props {
 defineProps<Props>();
 
 const showMenu = ref<boolean>(false);
+const mobile = inject<boolean>("isMobile", false);
 </script>
 
 <template>
   <!-- First div is a trick  -->
   <div
-    class="h-20 w-20 rounded items-center gap-2 shadow-default"
+    :class="mobile ? 'h-12 w-12 ' : 'h-20 w-20'"
     style="visibility: hidden"
   />
 
@@ -23,21 +25,26 @@ const showMenu = ref<boolean>(false);
     enter-from-class="opacity-0"
     leave-active-class="duration-75 ease-out transition-all"
     leave-to-class="opacity-0"
+    v-on-click-outside="() => (showMenu = false)"
   >
     <div
       v-if="!showMenu"
       @click="showMenu = true"
-      class="h-20 w-20 rounded flex flex-col items-center gap-2 shadow-default cursor-pointer absolute"
-      :class="accentColor"
+      class="rounded flex flex-col items-center gap-2 shadow-default cursor-pointer absolute"
+      :class="mobile ? 'h-12 w-12 ' + accentColor : 'h-20 w-20 ' + accentColor"
     >
-      <div class="w-3/5 h-2 bg-white mt-5 rounded-md" />
-      <div class="w-3/5 h-2 bg-white rounded-md" />
-      <div class="w-3/5 h-2 bg-white rounded-md" />
+      <div
+        class="w-3/5 bg-white rounded-md"
+        :class="mobile ? 'mt-2.5 h-1' : 'mt-5 h-2'"
+      />
+      <div class="w-3/5 bg-white rounded-md" :class="mobile ? 'h-1' : 'h-2'" />
+      <div class="w-3/5 bg-white rounded-md" :class="mobile ? 'h-1' : 'h-2'" />
     </div>
 
     <div
       v-else
-      class="flex flex-col w-80 h-[400px] rounded shadow-menu absolute"
+      class="flex flex-col rounded shadow-menu absolute z-10"
+      :class="mobile ? 'w-[95%] h-[400px]' : 'w-80 h-[400px]'"
     >
       <div class="flex flex-row rounded" :class="accentColor">
         <img

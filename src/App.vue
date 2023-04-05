@@ -2,11 +2,13 @@
 import { useAnimeStore } from "@/stores";
 import { SiteHeader } from "@/components";
 
-import { onBeforeMount } from "vue";
+import { onBeforeMount, inject } from "vue";
 
 document.title = "رزنمي";
 
 const animeStore = useAnimeStore();
+
+const mobile = inject<boolean>("isMobile", false);
 
 onBeforeMount(() => {
   animeStore.fill();
@@ -15,7 +17,7 @@ onBeforeMount(() => {
 
 <template>
   <transition name="fade" mode="out-in">
-    <div class="mx-44 mt-14" :key="$route.path">
+    <div :class="mobile ? 'mx-2 mt-2' : 'mx-44 mt-14'" :key="$route.path">
       <SiteHeader />
 
       <router-view />

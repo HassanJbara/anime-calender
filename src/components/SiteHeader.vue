@@ -4,7 +4,7 @@ import { getSeasonName, getSeasonTextColor, getSeasonBgColor } from "@/utils";
 import { BurgerMenu } from "@/components";
 import { useAnimeStore } from "@/stores";
 
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -15,6 +15,8 @@ const selectedSeason = computed(() => {
 const selectedYear = computed(() => {
   return animeStore.getYear;
 });
+
+const mobile = inject<boolean>("isMobile", false);
 
 const logoSVG = computed(() => {
   if (router.currentRoute.value.name === "schedule")
@@ -47,9 +49,12 @@ const logoSVG = computed(() => {
 
     <div
       v-if="router.currentRoute.value.name === 'schedule'"
-      class="flex flex-col"
+      class="flex flex-col self-center"
     >
-      <span class="text-4xl text-format-text font-main font-semibold">
+      <span
+        class="text-format-text font-main font-semibold"
+        :class="mobile ? 'text-xl' : ' text-4xl'"
+      >
         جدول العرض
       </span>
 
@@ -57,12 +62,17 @@ const logoSVG = computed(() => {
     </div>
 
     <!-- Seasons List -->
-    <div class="flex flex-row gap-10" v-else>
+    <div
+      class="flex flex-row"
+      :class="mobile ? 'container overflow-auto max-w-[50%] gap-5' : 'gap-10'"
+      v-else
+    >
       <router-link
         v-for="season in seasons.values()"
         :key="season"
         :to="'/' + selectedYear.toString() + '/' + season.toLowerCase()"
-        class="flex flex-col font-main font-semibold text-4xl"
+        class="flex flex-col font-main font-semibold"
+        :class="mobile ? 'text-xl' : 'text-4xl'"
       >
         <span
           :class="
@@ -100,11 +110,21 @@ const logoSVG = computed(() => {
     <!-- Logo -->
     <router-link to="/" class="self-center">
       <img
-        height="100"
-        width="150"
+        :height="mobile ? 50 : 100"
+        :width="mobile ? 75 : 150"
         :src="logoSVG"
         @click="() => animeStore.clearState()"
       />
     </router-link>
   </div>
 </template>
+
+<style>
+.container {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+</style>
