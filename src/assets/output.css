@@ -767,6 +767,11 @@ video {
   min-height: 4rem;
 }
 
+.min-h-fit {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
