@@ -23,5 +23,5 @@ const isMobile = computed(() => {
 
 app.use(pinia);
 app.use(router);
-app.provide("isMobile", false);
+app.provide("isMobile", isMobile);
 app.mount("#app");
