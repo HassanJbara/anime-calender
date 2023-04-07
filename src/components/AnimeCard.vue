@@ -143,9 +143,9 @@ onMounted(() => {
 
         <p
           class="overflow-auto container"
-          :class="mobile ? 'max-h-16' : 'max-h-36'"
+          :class="mobile ? 'max-h-[72px]' : 'max-h-36'"
         >
-          {{ anime.story }}
+          {{ anime.story }} {{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}{{ anime.story }}
         </p>
       </div>
 

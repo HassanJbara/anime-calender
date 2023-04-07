@@ -747,6 +747,18 @@ video {
   max-height: 4rem;
 }
 
+.max-h-\[70px\] {
+  max-height: 70px;
+}
+
+.max-h-24 {
+  max-height: 6rem;
+}
+
+.max-h-\[72px\] {
+  max-height: 72px;
+}
+
 .min-h-\[2rem\] {
   min-height: 2rem;
 }

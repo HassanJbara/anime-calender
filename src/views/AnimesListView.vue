@@ -59,11 +59,11 @@ const animes = computed(() => {
                   v-if="showSearch"
                   type="text"
                   placeholder="ابحث باسم الأنمي أو الاستديو"
-                  class="text-lg placeholder:text-right placeholder:font-main font-main rounded p-2 shadow-menu absolute"
+                  class=" placeholder:text-right placeholder:font-main font-main rounded p-2 shadow-menu absolute"
                   :class="
                     mobile
-                      ? 'w-44 h-5 ml-6 placeholder:text-xs'
-                      : 'w-60 h-9 ml-10 placeholder:text-base'
+                      ? 'w-44 h-5 ml-6 placeholder:text-xs text-xs'
+                      : 'w-60 h-9 ml-10 placeholder:text-base text-lg'
                   "
                   v-model="searchValue"
                 />
