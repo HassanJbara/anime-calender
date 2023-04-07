@@ -115,7 +115,9 @@ onMounted(() => {
   <div
     class="bg-card-bg rounded-md shadow-anime-card flex flex-row justify-between text-right"
     :class="
-      mobile ? 'w-[350px] h-48' : 'w-[425px] xl:w-[45%] max-w-[700px] xl:h-96 h-80'
+      mobile
+        ? 'w-[350px] h-48'
+        : 'w-[425px] xl:w-[45%] max-w-[700px] xl:h-96 h-80'
     "
   >
     <!-- Content -->

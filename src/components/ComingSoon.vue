@@ -1,19 +1,19 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { NResult } from "naive-ui";
 </script>
 
 <template>
   <n-result
     status="error"
-    title="غير موجودة"
-    description="لم نعثر على الصفحة التي تبحث عنها!"
-    class="h-[60vh] p-10 flex flex-col items-center justify-center"
+    title="قريباً"
+    description="حماسك أسرع من عملنا، نتمنى أن تعود لاحقاً بعد انتهائنا من تجهيز هذه الصفحة."
+    class="flex flex-col gap-2 items-center justify-center h-[60vh] p-10"
     style="direction: rtl"
   >
     <template #icon>
       <figure>
         <img
-          src="/images/not-found-haruhi.gif"
+          src="/images/coming-soon-haruhi.gif"
           alt="haruhi staring at pc"
           width="600"
           height="600"

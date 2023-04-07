@@ -2,7 +2,7 @@
 import { formats } from "@/modules";
 import { useAnimeStore } from "@/stores";
 import { getFormatName } from "@/utils";
-import { AnimeCard } from "@/components";
+import { AnimeCard, ComingSoon } from "@/components";
 
 import { computed, ref, inject } from "vue";
 
@@ -24,7 +24,9 @@ const animes = computed(() => {
 </script>
 
 <template>
-  <div class="w-full mb-10">
+  <ComingSoon v-if="animes.length === 0" />
+
+  <div v-else class="w-full mb-10">
     <div
       v-for="format in formats.values()"
       :key="format"
@@ -59,7 +61,7 @@ const animes = computed(() => {
                   v-if="showSearch"
                   type="text"
                   placeholder="ابحث باسم الأنمي أو الاستديو"
-                  class=" placeholder:text-right placeholder:font-main font-main rounded p-2 shadow-menu absolute"
+                  class="placeholder:text-right placeholder:font-main font-main rounded p-2 shadow-menu absolute"
                   :class="
                     mobile
                       ? 'w-44 h-5 ml-6 placeholder:text-xs text-xs'
