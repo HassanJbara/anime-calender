@@ -64,7 +64,9 @@ const logoSVG = computed(() => {
     <!-- Seasons List -->
     <div
       class="flex flex-row"
-      :class="mobile ? 'container overflow-auto max-w-[50%] gap-5' : 'gap-10'"
+      :class="
+        mobile ? 'container overflow-auto max-w-[60%] justify-around' : 'gap-10'
+      "
       v-else
     >
       <router-link
@@ -72,7 +74,7 @@ const logoSVG = computed(() => {
         :key="season"
         :to="'/' + selectedYear.toString() + '/' + season.toLowerCase()"
         class="flex flex-col font-main font-semibold"
-        :class="mobile ? 'text-xl' : 'text-4xl'"
+        :class="mobile ? 'text-sm gap-[1px]' : 'text-4xl gap-1.5'"
       >
         <span
           :class="
@@ -81,11 +83,13 @@ const logoSVG = computed(() => {
               : 'text-default-gray'
           "
         >
-          {{ getSeasonName(season) }}
+          <span :class="selectedSeason !== season && mobile ? 'text-xs' : ''">
+            {{ getSeasonName(season) }}
+          </span>
         </span>
 
         <div
-          class="mt-1.5 w-4/5 h-0.5 self-center rounded-md"
+          class="w-4/5 h-0.5 self-center rounded-md"
           :class="
             selectedSeason === season
               ? getSeasonBgColor(season)
@@ -95,11 +99,11 @@ const logoSVG = computed(() => {
 
         <span
           v-show="season === selectedSeason"
-          class="mt-1.5 self-center text-2xl"
+          class="self-center font-sans"
           :class="
-            selectedSeason === season
-              ? getSeasonTextColor(season)
-              : 'text-default-gray'
+            mobile
+              ? 'text-mobile ' + getSeasonTextColor(season)
+              : 'text-2xl ' + getSeasonTextColor(season)
           "
         >
           {{ animeStore.getYear }}
@@ -110,8 +114,8 @@ const logoSVG = computed(() => {
     <!-- Logo -->
     <router-link to="/" class="self-center">
       <img
-        :height="mobile ? 50 : 100"
-        :width="mobile ? 75 : 150"
+        :height="mobile ? 20 : 100"
+        :width="mobile ? 50 : 150"
         :src="logoSVG"
         @click="() => animeStore.clearState()"
       />

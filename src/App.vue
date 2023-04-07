@@ -17,7 +17,7 @@ onBeforeMount(() => {
 
 <template>
   <transition name="fade" mode="out-in">
-    <div :class="mobile ? 'mx-2 mt-2' : 'mx-44 mt-14'" :key="$route.path">
+    <div :class="mobile ? 'mx-6 mt-8' : 'mx-44 mt-14'" :key="$route.path">
       <SiteHeader />
 
       <router-view />

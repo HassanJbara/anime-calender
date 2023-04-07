@@ -14,10 +14,7 @@ const mobile = inject<boolean>("isMobile", false);
 
 <template>
   <!-- First div is a trick  -->
-  <div
-    :class="mobile ? 'h-12 w-12 ' : 'h-20 w-20'"
-    style="visibility: hidden"
-  />
+  <div :class="mobile ? 'h-8 w-8 ' : 'h-20 w-20'" style="visibility: hidden" />
 
   <Transition
     mode="out-in"
@@ -30,21 +27,31 @@ const mobile = inject<boolean>("isMobile", false);
     <div
       v-if="!showMenu"
       @click="showMenu = true"
-      class="rounded flex flex-col items-center gap-2 shadow-default cursor-pointer absolute"
-      :class="mobile ? 'h-12 w-12 ' + accentColor : 'h-20 w-20 ' + accentColor"
+      class="rounded flex flex-col items-center shadow-default cursor-pointer absolute"
+      :class="
+        mobile
+          ? 'h-8 w-8 gap-1 ' + accentColor
+          : 'h-20 w-20  gap-2 ' + accentColor
+      "
     >
       <div
         class="w-3/5 bg-white rounded-md"
-        :class="mobile ? 'mt-2.5 h-1' : 'mt-5 h-2'"
+        :class="mobile ? 'mt-2 h-[3px]' : 'mt-5 h-2'"
       />
-      <div class="w-3/5 bg-white rounded-md" :class="mobile ? 'h-1' : 'h-2'" />
-      <div class="w-3/5 bg-white rounded-md" :class="mobile ? 'h-1' : 'h-2'" />
+      <div
+        class="w-3/5 bg-white rounded-md"
+        :class="mobile ? 'h-[3px]' : 'h-2'"
+      />
+      <div
+        class="w-3/5 bg-white rounded-md"
+        :class="mobile ? 'h-[3px]' : 'h-2'"
+      />
     </div>
 
     <div
       v-else
       class="flex flex-col rounded shadow-menu absolute z-10"
-      :class="mobile ? 'w-[95%] h-[400px]' : 'w-80 h-[400px]'"
+      :class="mobile ? 'w-[88%] h-fit' : 'w-80 h-fit'"
     >
       <div class="flex flex-row rounded" :class="accentColor">
         <img
@@ -68,7 +75,7 @@ const mobile = inject<boolean>("isMobile", false);
           <img src="/calender.svg" height="35" class="float-right w-9" />
         </router-link>
 
-        <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
+        <!-- <div class="bg-burger-text self-center h-px w-4/5 my-4 opacity-60" />
 
         <div class="flex flex-row w-11/12 items-center justify-between">
           <span class="w-8/12 text-right"> أرشيف </span>
@@ -87,7 +94,7 @@ const mobile = inject<boolean>("isMobile", false);
         <div class="flex flex-row w-11/12 items-center justify-between">
           <span class="w-8/12 text-right"> الإعدادات </span>
           <img src="/settings.svg" height="35" class="float-right w-9" />
-        </div>
+        </div> -->
       </div>
     </div>
   </Transition>

@@ -25,6 +25,9 @@ module.exports = {
       fontFamily: {
         "main": ['"Tajawal"'],
       },
+      fontSize: {
+        "mobile": ['9px', '12px']
+      }
     },
   },
   plugins: [],

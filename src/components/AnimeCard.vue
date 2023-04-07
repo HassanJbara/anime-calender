@@ -9,7 +9,7 @@ import {
 } from "@/utils";
 
 import { onMounted, type VNodeChild } from "vue";
-import { ref, computed, h } from "vue";
+import { ref, computed, h, inject } from "vue";
 import { NTag, NDropdown } from "naive-ui";
 import type { DropdownOption } from "naive-ui";
 import { dragscroll as vDragscroll } from "vue-dragscroll";
@@ -21,6 +21,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const watchingStore = useWatchingStore();
+const mobile = inject<boolean>("isMobile", false);
 
 const watchingStatus = computed(() => {
   return watchingStore.find_status(props.anime.id);
@@ -46,18 +47,32 @@ const options = ref<DropdownOption[]>([
   {
     label: "سأشاهده",
     key: "watching",
-    icon: () => h("img", { src: "/watching.svg", width: "24", height: "24" }),
+    icon: () =>
+      h("img", {
+        src: "/watching.svg",
+        width: mobile ? "11" : "24",
+        height: mobile ? "11" : "24",
+      }),
   },
   {
     label: "ربما أشاهده",
     key: "unsure",
-    icon: () => h("img", { src: "/unsure.svg", width: "24", height: "24" }),
+    icon: () =>
+      h("img", {
+        src: "/unsure.svg",
+        width: mobile ? "11" : "24",
+        height: mobile ? "11" : "24",
+      }),
   },
   {
     label: "لن أشاهده",
     key: "not-watching",
     icon: () =>
-      h("img", { src: "/not-watching.svg", width: "24", height: "24" }),
+      h("img", {
+        src: "/not-watching.svg",
+        width: mobile ? "11" : "24",
+        height: mobile ? "11" : "24",
+      }),
   },
 ]);
 
@@ -81,7 +96,9 @@ function renderDropdownLabel(option: DropdownOption) {
   return h(
     "span",
     {
-      class: "text-watch-text text-xl font-medium font-main",
+      class: mobile
+        ? "text-watch-text text-xs font-medium font-main"
+        : "text-watch-text text-xl font-medium font-main",
     },
     {
       default: () => option.label as VNodeChild,
@@ -96,13 +113,15 @@ onMounted(() => {
 
 <template>
   <div
-    class="w-[750px] h-96 bg-card-bg rounded-md shadow-anime-card flex flex-row justify-between text-right"
+    class="bg-card-bg rounded-md shadow-anime-card flex flex-row justify-between text-right"
+    :class="mobile ? 'w-[350px] h-48' : 'w-[750px] h-96'"
   >
     <!-- Content -->
 
     <div class="flex flex-col justify-between w-[62%] max-h-full font-main">
       <div
-        class="mt-8 mb-2 mx-5 flex flex-col gap-2 font-medium text-base text-watch-text text-justify"
+        class="mb-2 mx-5 flex flex-col font-medium text-watch-text text-justify"
+        :class="mobile ? 'text-mobile mt-4' : 'text-base mt-8 gap-2'"
         style="direction: rtl"
       >
         <p v-if="anime.format === 'MOVIE'">الفيلم يعرض بعد</p>
@@ -110,46 +129,62 @@ onMounted(() => {
           الحلقة {{ getAiredEpisodeCount(anime.start_date) + 1 }} تعرض بعد
         </p>
 
-        <p class="font-medium text-next-episode text-[26px] my-3">
+        <p
+          class="text-next-episode"
+          :class="
+            mobile ? 'text-xs font-bold my-2' : 'text-[26px] font-medium my-3'
+          "
+        >
           {{ anime.next_episode }}
         </p>
-        <p class="my-2">مقتبس من: {{ getAdaptationName(anime.adaptation) }}</p>
+        <p :class="mobile ? 'mb-2' : 'my-2'">
+          مقتبس من: {{ getAdaptationName(anime.adaptation) }}
+        </p>
 
-        <p class="max-h-36 overflow-auto container">{{ anime.story }}</p>
+        <p
+          class="overflow-auto container"
+          :class="mobile ? 'max-h-16' : 'max-h-36'"
+        >
+          {{ anime.story }}
+        </p>
       </div>
 
       <!-- Footer -->
       <div
-        class="bg-card-footer w-full h-16 flex flex-row justify-between items-center p-5"
+        class="bg-card-footer w-full flex flex-row justify-between items-center"
+        :class="mobile ? 'h-8 p-2.5' : 'h-16 p-5'"
       >
         <n-dropdown
           :options="options"
-          size="huge"
+          :size="mobile ? 'small' : 'huge'"
           placement="top"
           @select="changeWatchStatus"
           :render-label="renderDropdownLabel"
         >
           <img
             :src="statusIcon"
-            height="39"
-            width="39"
+            :height="mobile ? '18' : '39'"
+            :width="mobile ? '18' : '39'"
             class="mr-2 cursor-pointer"
           />
         </n-dropdown>
 
         <div
-          class="flex flex-row w-fit gap-4 overflow-x-scroll container"
+          class="flex flex-row w-fit overflow-x-scroll container"
+          :class="mobile ? 'gap-2' : 'gap-4'"
           v-dragscroll
         >
           <n-tag
             v-for="genre in anime.genres"
             :key="genre"
             round
-            size="large"
+            :size="mobile ? 'tiny' : 'large'"
             :bordered="false"
             :color="{ color: getSeasonColor(anime.season), textColor: 'white' }"
           >
-            <span class="text-lg">{{ getGenreName(genre) }}</span>
+            <span :class="mobile ? 'text-mobile' : 'text-lg'">
+              {{ getGenreName(genre) }}
+            </span>
           </n-tag>
         </div>
       </div>
@@ -161,23 +196,29 @@ onMounted(() => {
       <img
         :src="anime.cover_image"
         class="w-full h-full rounded-r-md"
-        width="277"
+        :width="mobile ? '128' : '277'"
       />
       <div
-        class="absolute bottom-0 w-full bg-card-cover-bg/80 p-4 text-left min-h-[4rem] rounded-br-md"
+        class="absolute bottom-0 w-full bg-card-cover-bg/80 text-left rounded-br-md"
+        :class="mobile ? 'min-h-[2rem] p-2' : 'min-h-[4rem] p-4'"
       >
-        <p class="text-white text-xl font-semibold">
+        <p
+          class="text-white font-semibold"
+          :class="mobile ? 'text-xs' : 'text-xl'"
+        >
           {{ anime.name }}
         </p>
         <p
-          class="text-lg font-normal"
+          class="font-normal"
           :class="
             anime.season === 'FALL' || anime.studio === 'SPRING'
               ? 'text-spring-wine'
               : 'text-winter-torq'
           "
         >
-          {{ anime.studio }}
+          <span :class="mobile ? 'text-mobile' : 'text-lg'">
+            {{ anime.studio }}
+          </span>
         </p>
       </div>
     </div>
