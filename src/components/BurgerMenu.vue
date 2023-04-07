@@ -50,8 +50,8 @@ const mobile = inject<boolean>("isMobile", false);
 
     <div
       v-else
-      class="flex flex-col rounded shadow-menu absolute z-10 h-fit min-h-fit"
-      :class="mobile ? 'w-[88%]' : 'w-80'"
+      class="flex flex-col rounded shadow-menu absolute z-10 h-fit"
+      :class="mobile ? 'w-[88%] min-h-[180px]' : 'w-80'"
     >
       <div class="flex flex-row rounded" :class="accentColor">
         <img

@@ -772,6 +772,18 @@ video {
   min-height: fit-content;
 }
 
+.min-h-\[300px\] {
+  min-height: 300px;
+}
+
+.min-h-\[200px\] {
+  min-height: 200px;
+}
+
+.min-h-\[180px\] {
+  min-height: 180px;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }

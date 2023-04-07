@@ -4,9 +4,10 @@ import { useAnimeStore } from "@/stores";
 import { AnimeCardMini } from "@/components";
 import { getWeekdayName } from "@/utils";
 
-import { computed, onMounted } from "vue";
+import { computed, onMounted, inject } from "vue";
 
 const animeStore = useAnimeStore();
+const mobile = inject<boolean>("isMobile", false);
 
 const animes = computed(() => {
   return animeStore.getCurrentAnimes.filter(
@@ -36,6 +37,7 @@ onMounted(() => {
         v-for="anime in animes.filter((a) => a.weekday === weekday)"
         :key="anime.id"
         :anime="anime"
+        :class="mobile ? 'w-full' : ''"
       />
     </div>
   </div>
