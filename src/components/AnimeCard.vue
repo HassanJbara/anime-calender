@@ -114,7 +114,9 @@ onMounted(() => {
 <template>
   <div
     class="bg-card-bg rounded-md shadow-anime-card flex flex-row justify-between text-right"
-    :class="mobile ? 'w-[350px] h-48' : 'w-[750px] h-96'"
+    :class="
+      mobile ? 'w-[350px] h-48' : 'w-[425px] xl:w-[45%] max-w-[700px] xl:h-96 h-80'
+    "
   >
     <!-- Content -->
 
@@ -143,7 +145,7 @@ onMounted(() => {
 
         <p
           class="overflow-auto container"
-          :class="mobile ? 'max-h-[72px]' : 'max-h-36'"
+          :class="mobile ? 'max-h-[72px]' : 'xl:max-h-36 max-h-20'"
         >
           {{ anime.story }}
         </p>

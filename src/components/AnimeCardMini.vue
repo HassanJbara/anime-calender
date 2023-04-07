@@ -31,7 +31,7 @@ function cardBorder() {
 
 <template>
   <div
-    class="w-[480px] h-24 bg-card-bg rounded-md shadow-anime-card flex flex-row justify-between text-right"
+    class="h-24 bg-card-bg rounded-md shadow-anime-card flex flex-row justify-between text-right"
     :class="cardBorder()"
   >
     <!-- Content -->

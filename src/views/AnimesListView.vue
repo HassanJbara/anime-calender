@@ -83,7 +83,7 @@ const animes = computed(() => {
 
       <div
         class="flex flex-wrap justify-between w-full"
-        :class="mobile ? 'mt-5 gap-y-5' : 'mt-11 gap-y-14'"
+        :class="mobile ? 'mt-5 gap-y-5' : 'mt-11 gap-y-14 gap-x-2'"
       >
         <AnimeCard
           v-for="anime in animes.filter((a) => a.format === format)"

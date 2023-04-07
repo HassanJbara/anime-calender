@@ -37,7 +37,7 @@ onMounted(() => {
         v-for="anime in animes.filter((a) => a.weekday === weekday)"
         :key="anime.id"
         :anime="anime"
-        :class="mobile ? 'w-full' : ''"
+        :class="mobile ? 'w-full' : 'w-[400px]'"
       />
     </div>
   </div>
