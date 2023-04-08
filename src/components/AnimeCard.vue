@@ -8,7 +8,7 @@ import {
   getAiredEpisodeCount,
 } from "@/utils";
 
-import { onMounted, type VNodeChild } from "vue";
+import { onMounted, type VNodeChild, type Ref } from "vue";
 import { ref, computed, h, inject } from "vue";
 import { NTag, NDropdown } from "naive-ui";
 import type { DropdownOption } from "naive-ui";
@@ -21,7 +21,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const watchingStore = useWatchingStore();
-const mobile = inject<boolean>("isMobile", false);
+const mobile = inject<Ref<boolean>>("isMobile", ref(false));
 
 const watchingStatus = computed(() => {
   return watchingStore.find_status(props.anime.id);
@@ -50,8 +50,8 @@ const options = ref<DropdownOption[]>([
     icon: () =>
       h("img", {
         src: "/watching.svg",
-        width: mobile ? "11" : "24",
-        height: mobile ? "11" : "24",
+        width: mobile.value ? "11" : "24",
+        height: mobile.value ? "11" : "24",
       }),
   },
   {
@@ -60,8 +60,8 @@ const options = ref<DropdownOption[]>([
     icon: () =>
       h("img", {
         src: "/unsure.svg",
-        width: mobile ? "11" : "24",
-        height: mobile ? "11" : "24",
+        width: mobile.value ? "11" : "24",
+        height: mobile.value ? "11" : "24",
       }),
   },
   {
@@ -70,8 +70,8 @@ const options = ref<DropdownOption[]>([
     icon: () =>
       h("img", {
         src: "/not-watching.svg",
-        width: mobile ? "11" : "24",
-        height: mobile ? "11" : "24",
+        width: mobile.value ? "11" : "24",
+        height: mobile.value ? "11" : "24",
       }),
   },
 ]);
@@ -96,7 +96,7 @@ function renderDropdownLabel(option: DropdownOption) {
   return h(
     "span",
     {
-      class: mobile
+      class: mobile.value
         ? "text-watch-text text-xs font-medium font-main"
         : "text-watch-text text-xl font-medium font-main",
     },
