@@ -4,14 +4,14 @@ import type { Anime, AnimeSearch, season } from "@/modules";
 
 interface AnimesStoreState {
   animes: Anime[];
-  season: season;
+  season: season | undefined;
   year: number;
 }
 
 const defaultState = (): AnimesStoreState => {
   return {
     animes: [],
-    season: "FALL",
+    season: undefined,
     year: new Date().getFullYear(),
   };
 };

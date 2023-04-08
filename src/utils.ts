@@ -150,7 +150,7 @@ export function getSeasonTextColor(s: season) {
   }
 }
 
-export function getSeasonBgColor(s: season) {
+export function getSeasonBgColor(s: season | undefined) {
   switch (s) {
     case "FALL":
       return "bg-fall-blue";
@@ -160,6 +160,8 @@ export function getSeasonBgColor(s: season) {
       return "bg-winter-torq";
     case "SUMMER":
       return "bg-summer-red";
+    default:
+      return "bg-default-gray";
   }
 }
 

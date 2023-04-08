@@ -32,7 +32,7 @@ const logoSVG = computed(() => {
     case "SUMMER":
       return "/logo-summer.svg";
     default:
-      return "";
+      return "/logo-schedule.svg";
   }
 });
 </script>

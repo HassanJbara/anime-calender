@@ -19,7 +19,7 @@ import { NResult } from "naive-ui";
           height="600"
           class="rounded-md shadow-anime-card"
         />
-        <figcaption class="text-mobile">
+        <figcaption class="text-mobile" style="direction: ltr">
           ©: Kyoto Animation, Kadokawa
         </figcaption>
       </figure>
