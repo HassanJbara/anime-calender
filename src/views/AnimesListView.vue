@@ -43,7 +43,7 @@ onBeforeMount(() => {
       class="w-full mt-20"
     />
 
-    <ComingSoon v-else-if="animes.length === 0" />
+    <ComingSoon v-else-if="animes.length === 0 && !showSearch" />
 
     <div v-else class="w-full mb-10">
       <div
