@@ -23,5 +23,5 @@ const isMobile = computed(() => {
 
 app.use(pinia);
 app.use(router);
-app.provide("isMobile", isMobile);
+app.provide("isMobile", isMobile); // Injection of the computed ref, not its value
 app.mount("#app");

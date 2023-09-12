@@ -4,8 +4,6 @@ import { SiteHeader } from "@/components";
 
 import { onBeforeMount, inject } from "vue";
 
-document.title = "رزنمي";
-
 const animeStore = useAnimeStore();
 
 const mobile = inject<boolean>("isMobile", false);

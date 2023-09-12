@@ -17,24 +17,6 @@ const selectedYear = computed(() => {
 });
 
 const mobile = inject<boolean>("isMobile", false);
-
-const logoSVG = computed(() => {
-  if (router.currentRoute.value.name === "schedule")
-    return "/logo-schedule.svg";
-
-  switch (selectedSeason.value) {
-    case "FALL":
-      return "/logo-fall.svg";
-    case "SPRING":
-      return "/logo-spring.svg";
-    case "WINTER":
-      return "/logo-winter.svg";
-    case "SUMMER":
-      return "/logo-summer.svg";
-    default:
-      return "/logo-schedule.svg";
-  }
-});
 </script>
 
 <template>
@@ -116,7 +98,6 @@ const logoSVG = computed(() => {
       <img
         :height="mobile ? 20 : 100"
         :width="mobile ? 50 : 150"
-        :src="logoSVG"
         @click="() => animeStore.clearState()"
       />
     </router-link>
